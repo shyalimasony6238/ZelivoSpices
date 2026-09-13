@@ -1,0 +1,551 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Zelivo Spices | Authentic Kerala Spices
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="row">
+
+            <div class="col-lg-8">
+
+                <span class="hero-small">
+                    AUTHENTIC • NATURAL • PREMIUM
+                </span>
+
+                <h1>
+                    The Soul of Kerala,
+                    <span>In Every Spice.</span>
+                </h1>
+
+                <p>
+                    Discover the rich aroma, flavour and tradition
+                    of carefully selected spices from the heart
+                    of Kerala.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{% url 'products' %}"
+                       class="btn btn-spice btn-lg">
+                        Explore Products
+                    </a>
+
+                    <a href="{% url 'story' %}"
+                       class="btn btn-outline-light btn-lg">
+                        Our Story
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+        <i class="bi bi-chevron-down"></i>
+    </div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <div class="image-frame">
+
+                    <img
+                        src="{% static 'images/banner.jpg' %}"
+                        alt="Zelivo Spices"
+                        class="img-fluid">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    WELCOME TO ZELIVO
+                </span>
+
+                <h2 class="section-title">
+                    Nature's Finest
+                    <span>Flavours</span>
+                </h2>
+
+                <p>
+                    Zelivo Spices brings together the finest
+                    ingredients sourced with care and passion.
+                    Every spice carries the character of its
+                    origin and the richness of Kerala.
+                </p>
+
+                <p>
+                    From aromatic cardamom to bold black pepper,
+                    our products are selected to bring authentic
+                    flavour to every meal.
+                </p>
+
+                <a href="{% url 'about' %}"
+                   class="text-link">
+                    Discover Zelivo
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<section class="products-section section-padding">
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <span class="section-label">
+                OUR COLLECTION
+            </span>
+
+            <h2 class="section-title">
+                Premium <span>Spices</span>
+            </h2>
+
+            <p>
+                Handpicked ingredients for authentic flavour.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 mt-4">
+
+            {% for product in featured_products %}
+
+            <div class="col-6 col-md-4 col-lg-3">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}">
+
+                        {% if product.is_featured %}
+                        <span class="product-badge">
+                            Featured
+                        </span>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <small>
+                            {{ product.category.name }}
+                        </small>
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+                        <div class="product-footer">
+
+                            <span>
+                                ₹{{ product.price }}
+                            </span>
+
+                            <a href="{% url 'product_detail' product.id %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- Demo cards -->
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/cardamom.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Cardamom</h3>
+                        <div class="product-footer">
+                            <span>Premium</span>
+                            <a href="{% url 'products' %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/black-pepper.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Black Pepper</h3>
+                        <div class="product-footer">
+                            <span>Premium</span>
+                            <a href="{% url 'products' %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/cinnamon.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Cinnamon</h3>
+                        <div class="product-footer">
+                            <span>Premium</span>
+                            <a href="{% url 'products' %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/cloves.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Cloves</h3>
+                        <div class="product-footer">
+                            <span>Premium</span>
+                            <a href="{% url 'products' %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="text-center mt-5">
+
+            <a href="{% url 'products' %}"
+               class="btn btn-dark-spice">
+                View All Products
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY ZELIVO ================= -->
+
+<section class="why-section section-padding">
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <span class="section-label">
+                THE ZELIVO PROMISE
+            </span>
+
+            <h2 class="section-title">
+                Why Choose <span>Zelivo?</span>
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4 mt-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-flower1"></i>
+                    </div>
+
+                    <h3>100% Pure</h3>
+
+                    <p>
+                        Carefully selected natural ingredients
+                        with authentic flavour.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+
+                    <h3>Kerala Origin</h3>
+
+                    <p>
+                        Inspired by the rich spice heritage
+                        of Kerala.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-stars"></i>
+                    </div>
+
+                    <h3>Premium Quality</h3>
+
+                    <p>
+                        Every product is selected with
+                        quality in mind.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+
+                    <h3>Made With Care</h3>
+
+                    <p>
+                        Passion and care go into every
+                        Zelivo product.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STORY CTA ================= -->
+
+<section class="story-banner">
+
+    <div class="story-overlay"></div>
+
+    <div class="container">
+
+        <div class="story-content">
+
+            <span class="section-label">
+                FROM KERALA
+            </span>
+
+            <h2>
+                A Story Rooted
+                in <span>Spice</span>
+            </h2>
+
+            <p>
+                Explore the journey behind the flavours
+                that make Zelivo unique.
+            </p>
+
+            <a href="{% url 'story' %}"
+               class="btn btn-spice">
+                Read Our Story
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="section-heading text-center">
+
+            <span class="section-label">
+                CUSTOMER LOVE
+            </span>
+
+            <h2 class="section-title">
+                What People <span>Say</span>
+            </h2>
+
+        </div>
+
+
+        <div class="row justify-content-center mt-5">
+
+            {% for testimonial in testimonials %}
+
+            <div class="col-md-8 col-lg-6">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+
+                        {% for i in "12345" %}
+                            <i class="bi bi-star-fill"></i>
+                        {% endfor %}
+
+                    </div>
+
+                    <p>
+                        "{{ testimonial.review }}"
+                    </p>
+
+                    <h5>
+                        {{ testimonial.customer_name }}
+                    </h5>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-md-8 col-lg-6">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The aroma and freshness are amazing.
+                        Zelivo spices have become a regular
+                        part of our kitchen."
+                    </p>
+
+                    <h5>
+                        Happy Customer
+                    </h5>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NEWSLETTER CTA ================= -->
+
+<section class="newsletter-section">
+
+    <div class="container">
+
+        <div class="newsletter-box">
+
+            <div>
+
+                <span class="section-label">
+                    STAY CONNECTED
+                </span>
+
+                <h2>
+                    Bring More Flavour
+                    To Your Kitchen
+                </h2>
+
+            </div>
+
+            <a href="{% url 'contact' %}"
+               class="btn btn-spice">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

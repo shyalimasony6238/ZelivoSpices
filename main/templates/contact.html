@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Zelivo Spices
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     INNER HERO
+========================= -->
+
+<section class="inner-hero">
+
+    <div class="container">
+
+        <span class="section-label">
+            GET IN TOUCH
+        </span>
+
+        <h1>
+            Let's Talk
+            <span>Spices</span>
+        </h1>
+
+        <p>
+            We'd love to hear from you.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+
+            <!-- =========================
+                 CONTACT INFO
+            ========================== -->
+
+            <div class="col-lg-5">
+
+                <span class="section-label">
+                    CONTACT US
+                </span>
+
+                <h2 class="section-title">
+                    Have a Question?
+                </h2>
+
+                <p>
+                    Whether you want to know more about our
+                    products, partnerships or distribution,
+                    feel free to contact us.
+                </p>
+
+
+                <div class="contact-info">
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+
+                        <div>
+
+                            <small>Email</small>
+
+                            <p>
+                                zelivospices@gmail.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+
+                        <div>
+
+                            <small>Phone</small>
+
+                            <p>
+                                +91 9809780932
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+
+                        <div>
+
+                            <small>Location</small>
+
+                            <p>
+                               
+                                Kunnaappally, Valayamcoochi,<br> Perinthalmanna,  Kerala, India - 679322
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 CONTACT FORM
+            ========================== -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+
+                    <!-- DJANGO SUCCESS MESSAGE -->
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="alert alert-success">
+
+                                {{ message }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+
+                    <form
+                        method="POST"
+                        id="whatsappContactForm"
+                    >
+
+                        {% csrf_token %}
+
+
+                        <div class="row g-3">
+
+
+                            <!-- NAME -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Your Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="contactName"
+                                    class="form-control"
+                                    placeholder="Your name"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- EMAIL -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="contactEmail"
+                                    class="form-control"
+                                    placeholder="Your email"
+                                    required
+                                >
+
+                            </div>
+
+
+
+                            <!-- PHONE -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    id="contactPhone"
+                                    class="form-control"
+                                    placeholder="Phone number"
+                                >
+
+                            </div>
+
+
+
+                            <!-- SUBJECT -->
+
+                            <div class="col-md-6">
+
+                                <label>
+                                    Subject
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    id="contactSubject"
+                                    class="form-control"
+                                    placeholder="Subject"
+                                >
+
+                            </div>
+
+
+
+                            <!-- MESSAGE -->
+
+                            <div class="col-12">
+
+                                <label>
+                                    Message
+                                </label>
+
+                                <textarea
+                                    name="message"
+                                    id="contactMessage"
+                                    rows="6"
+                                    class="form-control"
+                                    placeholder="Write your message..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+
+                            <!-- SEND BUTTON -->
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-spice"
+                                    id="whatsappSendButton"
+                                >
+
+                                    Send Message
+
+                                    <i class="bi bi-send ms-2"></i>
+
+                                </button>
+
+                            </div>
+
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHATSAPP SCRIPT
+========================= -->
+
+<script>
+
+document.getElementById("whatsappContactForm").addEventListener("submit", function(event) {
+
+    // Stop the normal form submission temporarily
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById("contactName").value.trim();
+    const email = document.getElementById("contactEmail").value.trim();
+    const phone = document.getElementById("contactPhone").value.trim();
+    const subject = document.getElementById("contactSubject").value.trim();
+    const message = document.getElementById("contactMessage").value.trim();
+
+    // Create WhatsApp message
+    const whatsappMessage =
+        "Hello Zelivo Spices,\n\n" +
+        "New Contact Enquiry\n\n" +
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Phone: " + phone + "\n" +
+        "Subject: " + subject + "\n\n" +
+        "Message:\n" + message + "\n\n" +
+        "Thank you.";
+
+    // WhatsApp number
+    const whatsappURL =
+        "https://wa.me/919809780932?text=" +
+        encodeURIComponent(whatsappMessage);
+
+    // Open WhatsApp
+    window.open(whatsappURL, "_blank");
+
+    // Submit the form to Django after opening WhatsApp
+    setTimeout(function() {
+        document.getElementById("whatsappContactForm").submit();
+    }, 500);
+
+});
+
+</script>
+
+{% endblock %}

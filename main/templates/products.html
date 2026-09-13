@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Zelivo Spices | Products
+{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero">
+
+    <div class="container">
+
+        <span class="section-label">
+            ZELIVO COLLECTION
+        </span>
+
+        <h1>
+            Our <span>Products</span>
+        </h1>
+
+        <p>
+            Premium ingredients for unforgettable flavours.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section-padding">
+
+    <div class="container">
+
+
+        <!-- CATEGORY FILTER -->
+
+        <div class="category-filter text-center mb-5">
+
+            <button
+                class="filter-btn active"
+                data-filter="all">
+                All
+            </button>
+
+            {% for category in categories %}
+
+            <button
+                class="filter-btn"
+                data-filter="{{ category.id }}">
+                {{ category.name }}
+            </button>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="row g-4" id="productGrid">
+
+            {% for product in products %}
+
+            <div
+                class="col-6 col-md-4 col-lg-3 product-item"
+                data-category="{{ product.category.id }}">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}">
+
+                        {% if not product.is_available %}
+
+                        <span class="product-badge unavailable">
+                            Out of Stock
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="product-content">
+
+                        <small>
+                            {{ product.category.name }}
+                        </small>
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+                        {% if product.weight %}
+                        <p class="product-weight">
+                            {{ product.weight }}
+                        </p>
+                        {% endif %}
+
+                        <div class="product-footer">
+
+                            <strong>
+                                ₹{{ product.price }}
+                            </strong>
+
+                            <a href="{% url 'product_detail' product.id %}">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- PLACEHOLDER PRODUCTS -->
+
+            {% with demo_products="Cardamom,Black Pepper,Cinnamon,Cloves,Bay Leaf,Star Anise,Cashew,Raisin" %}
+
+            {% for product_name in demo_products|make_list %}
+
+            {% endfor %}
+
+            {% endwith %}
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/spicesbox.jpeg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Spices Box</h3>
+                        <div class="product-footer">
+                            <strong>Premium</strong>
+                            <a href="#">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/blackpepper.jpeg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Black Pepper</h3>
+                        <div class="product-footer">
+                            <strong>Premium</strong>
+                            <a href="#">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/cinnamon.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Cinnamon</h3>
+                        <div class="product-footer">
+                            <strong>Premium</strong>
+                            <a href="#">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'images/cloves.jpg' %}">
+                    </div>
+                    <div class="product-content">
+                        <small>Whole Spice</small>
+                        <h3>Cloves</h3>
+                        <div class="product-footer">
+                            <strong>Premium</strong>
+                            <a href="#">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

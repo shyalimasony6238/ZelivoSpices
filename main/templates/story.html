@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Our Story | Zelivo Spices
+{% endblock %}
+
+{% block content %}
+
+<section class="story-page-hero">
+
+    <div class="story-overlay"></div>
+
+    <div class="container">
+
+        <span class="section-label">
+            OUR STORY
+        </span>
+
+        <h1>
+            From the Land
+            <span>of Spices</span>
+        </h1>
+
+        <p>
+            A journey inspired by Kerala.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section-padding">
+
+    <div class="container">
+
+        {% for story in stories %}
+
+        <div class="row align-items-center g-5 story-row">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="{{ story.image.url }}"
+                    class="img-fluid rounded-image"
+                    alt="{{ story.title }}">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    {{ story.location }}
+                </span>
+
+                <h2 class="section-title">
+                    {{ story.title }}
+                </h2>
+
+                <p>
+                    {{ story.description }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="{% static 'images/story.jpg' %}"
+                    class="img-fluid rounded-image"
+                    alt="Kerala Spice Plantation">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    KERALA
+                </span>
+
+                <h2 class="section-title">
+                    Where Every
+                    <span>Spice Has A Story</span>
+                </h2>
+
+                <p>
+                    Kerala has been connected with the spice
+                    trade for centuries. Its hills, forests
+                    and tropical climate create the perfect
+                    environment for some of the world's most
+                    treasured spices.
+                </p>
+
+                <p>
+                    Zelivo takes inspiration from this heritage,
+                    bringing the warmth and character of Kerala
+                    spices into everyday cooking.
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<section class="quote-section">
+
+    <div class="container text-center">
+
+        <i class="bi bi-quote"></i>
+
+        <h2>
+            "Great flavour begins
+            with great ingredients."
+        </h2>
+
+        <p>
+            — Zelivo Spices
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

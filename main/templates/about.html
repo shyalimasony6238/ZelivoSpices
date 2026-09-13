@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About Zelivo Spices
+{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero">
+
+    <div class="container">
+
+        <span class="section-label">
+            ABOUT ZELIVO
+        </span>
+
+        <h1>
+            Our Passion.
+            <span>Our Spices.</span>
+        </h1>
+
+        <p>
+            Inspired by Kerala's rich spice heritage.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section-padding">
+
+    <div class="container">
+
+        {% if about %}
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="{{ about.image.url }}"
+                    class="img-fluid rounded-image"
+                    alt="{{ about.title }}">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    WHO WE ARE
+                </span>
+
+                <h2 class="section-title">
+                    {{ about.title }}
+                </h2>
+
+                <p>
+                    {{ about.description }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img
+                    src="{% static 'images/about.jpeg' %}"
+                    class="img-fluid rounded-image"
+                    alt="Zelivo Spices">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    WHO WE ARE
+                </span>
+
+                <h2 class="section-title">
+                    Bringing Kerala's
+                    <span>Flavours</span>
+                    To You
+                </h2>
+
+                <p>
+                    Zelivo Spices is built around a simple idea:
+                    great food begins with great ingredients.
+                </p>
+
+                <p>
+                    We celebrate Kerala's centuries-old spice
+                    tradition by bringing carefully selected
+                    spices to modern kitchens.
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<section class="mission-section section-padding">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="mission-card">
+
+                    <i class="bi bi-bullseye"></i>
+
+                    <h3>Our Mission</h3>
+
+                    <p>
+                        To deliver authentic, premium-quality
+                        spices while preserving the natural
+                        character and flavour of every ingredient.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="mission-card">
+
+                    <i class="bi bi-eye"></i>
+
+                    <h3>Our Vision</h3>
+
+                    <p>
+                        To make the richness of Kerala's spice
+                        heritage a part of kitchens around the world.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section-padding">
+
+    <div class="container text-center">
+
+        <span class="section-label">
+            QUALITY FIRST
+        </span>
+
+        <h2 class="section-title">
+            Selected With
+            <span>Care</span>
+        </h2>
+
+        <p class="section-description mx-auto">
+
+            From sourcing to packaging, we believe every
+            stage matters. Our goal is simple: preserve the
+            natural aroma, colour and character of every spice.
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

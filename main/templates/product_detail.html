@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ product.name }} | Zelivo Spices
+{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero small">
+
+    <div class="container">
+
+        <span class="section-label">
+            {{ product.category.name }}
+        </span>
+
+        <h1>
+            {{ product.name }}
+        </h1>
+
+    </div>
+
+</section>
+
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="product-detail-image">
+
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    PREMIUM SPICE
+                </span>
+
+                <h1 class="product-detail-title">
+                    {{ product.name }}
+                </h1>
+
+                <div class="detail-price">
+                    ₹{{ product.price }}
+                </div>
+
+                {% if product.weight %}
+
+                <div class="detail-weight">
+                    <i class="bi bi-box-seam"></i>
+
+                    {{ product.weight }}
+
+                </div>
+
+                {% endif %}
+
+                <p class="detail-description">
+
+                    {{ product.description }}
+
+                </p>
+
+
+                {% if product.is_available %}
+
+                <div class="availability available">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Available
+
+                </div>
+
+                {% else %}
+
+                <div class="availability unavailable">
+
+                    Currently unavailable
+
+                </div>
+
+                {% endif %}
+
+
+                <a href="{% url 'contact' %}"
+                   class="btn btn-spice btn-lg mt-4">
+
+                    Enquire Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

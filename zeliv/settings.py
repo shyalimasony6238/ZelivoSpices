@@ -157,3 +157,20 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+SECRET_KEY = your-django-secret-key
+DEBUG = False
+ALLOWED_HOSTS = zelivospices.onrender.com
+
+SECRET_KEY = "your-secret-key"
+DEBUG = True
+
+import os
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1"
+).split(",")

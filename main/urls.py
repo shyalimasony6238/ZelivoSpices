@@ -22,6 +22,11 @@ urlpatterns = [
         views.products,
         name="products"
     ),
+        path(
+        'addproduct/',
+        views.add_product,
+        name='add_product'
+    ),
 
     path(
         "products/<int:pk>/",

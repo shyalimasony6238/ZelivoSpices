@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Product | Zelivo Spices
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1>Add New Product</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">
+            Add Product
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

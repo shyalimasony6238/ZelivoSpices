@@ -12,7 +12,7 @@
     <meta name="description" content="Zelivo Spices - Premium Kerala spices, naturally sourced and carefully selected.">
 
     <meta name="keywords" content="Zelivo Spices, Kerala spices, cardamom, black pepper, cinnamon, cloves">
-
+<link rel="icon" type="image/jpeg" href="{% static 'images/logo.jpg' %}">
     <title>{% block title %}Zelivo Spices{% endblock %}</title>
 
     <!-- Bootstrap -->
@@ -44,6 +44,7 @@
             <a class="navbar-brand" href="{% url 'home' %}">
                 <span class="brand-main">ZELIVO</span>
                 <span class="brand-sub">SPICES</span>
+                 <img src="{% static 'images/logo.jpg' %}" alt="Zelivo Spices Logo" class="brand-logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -74,11 +75,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'story' %}">
-                            Our Story
-                        </a>
-                    </li>
+                  
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">

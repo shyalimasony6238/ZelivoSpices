@@ -12,142 +12,154 @@ Zelivo Spices | Products
 ============================================================ -->
 
 <section class="inner-hero">
+    <div class="container">
+        <span class="section-label">
+            ZELIVO COLLECTION
+        </span>
 
+        <h1>
+            Our <span>Products</span>
+        </h1>
 
-<div class="container">
-
-    <span class="section-label">
-        ZELIVO COLLECTION
-    </span>
-
-    <h1>
-        Our <span>Products</span>
-    </h1>
-
-    <p>
-        Premium ingredients for unforgettable flavours.
-    </p>
-
-</div>
-
+        <p>
+            Premium ingredients for unforgettable flavours.
+        </p>
+    </div>
 </section>
+
 
 <!-- ============================================================
      PRODUCTS SECTION
 ============================================================ -->
 
-<section class="section-padding">
+<section class="section-padding products-section">
+
+    <div class="container">
+
+        <!-- CATEGORY FILTER -->
+
+        <div class="category-filter text-center mb-4 mb-md-5">
+
+            <!-- ALL PRODUCTS -->
+
+            <button
+                type="button"
+                class="filter-btn active"
+                data-filter="all">
+                All
+            </button>
 
 
-<div class="container">
+            <!-- DATABASE CATEGORIES -->
 
-    <!-- CATEGORY FILTER -->
+            {% for category in categories %}
 
-    <div class="category-filter text-center mb-5">
+            <button
+                type="button"
+                class="filter-btn"
+                data-filter="{{ category.id }}">
 
-        <!-- ALL PRODUCTS -->
+                {{ category.name }}
 
-        <button
-            class="filter-btn active"
-            data-filter="all">
-            All
-        </button>
+            </button>
 
+            {% endfor %}
 
-        <!-- DATABASE CATEGORIES -->
-
-        {% for category in categories %}
-
-        <button
-            class="filter-btn"
-            data-filter="{{ category.id }}">
-
-            {{ category.name }}
-
-        </button>
-
-        {% endfor %}
-
-    </div>
+        </div>
 
 
-    <!-- PRODUCT GRID -->
+        <!-- PRODUCT GRID -->
 
-    <div class="row g-4" id="productGrid">
+        <div class="row g-3 g-md-4" id="productGrid">
 
-        {% for product in products %}
+            {% for product in products %}
 
-        <div
-            class="col-6 col-md-4 col-lg-3 product-item"
-            data-category="{{ product.category.id }}">
+            <div
+                class="col-6 col-sm-6 col-md-4 col-lg-3 product-item"
+                data-category="{{ product.category.id }}">
 
-            <div class="product-card">
-
-
-                <!-- PRODUCT IMAGE -->
-
-                <div class="product-image">
-
-                    <img
-                        src="{{ product.image.url }}"
-                        alt="{{ product.name }}">
-
-                    {% if not product.is_available %}
-
-                    <span class="product-badge unavailable">
-                        Out of Stock
-                    </span>
-
-                    {% endif %}
-
-                </div>
+                <div class="product-card h-100">
 
 
-                <!-- PRODUCT CONTENT -->
+                    <!-- PRODUCT IMAGE -->
 
-                <div class="product-content">
+                    <div class="product-image">
 
-                    <!-- CATEGORY -->
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                            loading="lazy">
 
-                    <small>
-                        {{ product.category.name }}
-                    </small>
+                        {% if not product.is_available %}
 
+                        <span class="product-badge unavailable">
+                            Out of Stock
+                        </span>
 
-                    <!-- PRODUCT NAME -->
+                        {% endif %}
 
-                    <h3>
-                        {{ product.name }}
-                    </h3>
-
-
-                    <!-- WEIGHT -->
-
-                    {% if product.weight %}
-
-                    <p class="product-weight">
-                        {{ product.weight }} 
-                         (Customized Quantity Available)
-                    </p>
-
-                    {% endif %}
+                    </div>
 
 
-                    <!-- PRICE + DETAILS -->
+                    <!-- PRODUCT CONTENT -->
 
-                    <div class="product-footer">
+                    <div class="product-content">
 
-                        <strong>
-                            ₹{{ product.price }}</strong> <br>
-                           (Price may vary based on quantity)
-                        
-                        <a
-                            href="{% url 'product_detail' product.id %}"
-                            aria-label="View {{ product.name }}">
+                        <!-- CATEGORY -->
 
-                            <i class="bi bi-arrow-right"></i>
+                        <small class="product-category">
+                            {{ product.category.name }}
+                        </small>
 
-                        </a>
+
+                        <!-- PRODUCT NAME -->
+
+                        <h3>
+                            {{ product.name }}
+                        </h3>
+
+
+                        <!-- WEIGHT -->
+
+                        {% if product.weight %}
+
+                        <p class="product-weight">
+                            {{ product.weight }}
+                            <span>
+                                (Customized Quantity Available)
+                            </span>
+                        </p>
+
+                        {% endif %}
+
+
+                        <!-- PRICE + DETAILS -->
+
+                        <div class="product-footer">
+
+                            <div class="product-price">
+
+                                <strong>
+                                    ₹{{ product.price }}
+                                </strong>
+
+                                <small>
+                                    Price may vary based on quantity
+                                </small>
+
+                            </div>
+
+
+                            <a
+                                href="{% url 'product_detail' product.id %}"
+                                class="product-arrow"
+                                aria-label="View {{ product.name }}">
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -155,28 +167,26 @@ Zelivo Spices | Products
 
             </div>
 
+
+            {% empty %}
+
+            <!-- NO PRODUCTS -->
+
+            <div class="col-12 text-center">
+
+                <p class="no-products">
+                    No products are currently available.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
         </div>
-
-
-        {% empty %}
-
-        <!-- NO PRODUCTS -->
-
-        <div class="col-12 text-center">
-
-            <p>
-                No products are currently available.
-            </p>
-
-        </div>
-
-        {% endfor %}
 
     </div>
-
-</div>
-
 
 </section>
 
 {% endblock %}
+

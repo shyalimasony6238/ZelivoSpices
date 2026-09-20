@@ -118,14 +118,15 @@ Contact Zelivo Spices
                         </div>
 
                         <div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Zelivo+Spices,+Kunnaappally,+Valayamcoochi,+Perinthalmanna,+Kerala,+India+679322"
+                                target="_blank" rel="noopener noreferrer" class="location-link">
+                                <small>Location</small>
 
-                            <small>Location</small>
+                                <p>
 
-                            <p>
-                               
-                                Kunnaappally, Valayamcoochi,<br> Perinthalmanna,  Kerala, India - 679322
-                            </p>
-
+                                    Kunnaappally, Valayamcoochi,<br> Perinthalmanna, Kerala, India - 679322
+                                </p>
+                            </a>
                         </div>
 
                     </div>
@@ -150,24 +151,21 @@ Contact Zelivo Spices
 
                     {% if messages %}
 
-                        {% for message in messages %}
+                    {% for message in messages %}
 
-                            <div class="alert alert-success">
+                    <div class="alert alert-success">
 
-                                {{ message }}
+                        {{ message }}
 
-                            </div>
+                    </div>
 
-                        {% endfor %}
+                    {% endfor %}
 
                     {% endif %}
 
 
 
-                    <form
-                        method="POST"
-                        id="whatsappContactForm"
-                    >
+                    <form method="POST" id="whatsappContactForm">
 
                         {% csrf_token %}
 
@@ -183,14 +181,8 @@ Contact Zelivo Spices
                                     Your Name
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="contactName"
-                                    class="form-control"
-                                    placeholder="Your name"
-                                    required
-                                >
+                                <input type="text" name="name" id="contactName" class="form-control"
+                                    placeholder="Your name" required>
 
                             </div>
 
@@ -204,14 +196,8 @@ Contact Zelivo Spices
                                     Email Address
                                 </label>
 
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="contactEmail"
-                                    class="form-control"
-                                    placeholder="Your email"
-                                    required
-                                >
+                                <input type="email" name="email" id="contactEmail" class="form-control"
+                                    placeholder="Your email" required>
 
                             </div>
 
@@ -225,13 +211,8 @@ Contact Zelivo Spices
                                     Phone
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="phone"
-                                    id="contactPhone"
-                                    class="form-control"
-                                    placeholder="Phone number"
-                                >
+                                <input type="text" name="phone" id="contactPhone" class="form-control"
+                                    placeholder="Phone number">
 
                             </div>
 
@@ -245,13 +226,8 @@ Contact Zelivo Spices
                                     Subject
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    id="contactSubject"
-                                    class="form-control"
-                                    placeholder="Subject"
-                                >
+                                <input type="text" name="subject" id="contactSubject" class="form-control"
+                                    placeholder="Subject">
 
                             </div>
 
@@ -265,14 +241,8 @@ Contact Zelivo Spices
                                     Message
                                 </label>
 
-                                <textarea
-                                    name="message"
-                                    id="contactMessage"
-                                    rows="6"
-                                    class="form-control"
-                                    placeholder="Write your message..."
-                                    required
-                                ></textarea>
+                                <textarea name="message" id="contactMessage" rows="6" class="form-control"
+                                    placeholder="Write your message..." required></textarea>
 
                             </div>
 
@@ -282,11 +252,7 @@ Contact Zelivo Spices
 
                             <div class="col-12">
 
-                                <button
-                                    type="submit"
-                                    class="btn btn-spice"
-                                    id="whatsappSendButton"
-                                >
+                                <button type="submit" class="btn btn-spice" id="whatsappSendButton">
 
                                     Send Message
 
@@ -319,43 +285,43 @@ Contact Zelivo Spices
 
 <script>
 
-document.getElementById("whatsappContactForm").addEventListener("submit", function(event) {
+    document.getElementById("whatsappContactForm").addEventListener("submit", function (event) {
 
-    // Stop the normal form submission temporarily
-    event.preventDefault();
+        // Stop the normal form submission temporarily
+        event.preventDefault();
 
-    // Get form values
-    const name = document.getElementById("contactName").value.trim();
-    const email = document.getElementById("contactEmail").value.trim();
-    const phone = document.getElementById("contactPhone").value.trim();
-    const subject = document.getElementById("contactSubject").value.trim();
-    const message = document.getElementById("contactMessage").value.trim();
+        // Get form values
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const phone = document.getElementById("contactPhone").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
 
-    // Create WhatsApp message
-    const whatsappMessage =
-        "Hello Zelivo Spices,\n\n" +
-        "New Contact Enquiry\n\n" +
-        "Name: " + name + "\n" +
-        "Email: " + email + "\n" +
-        "Phone: " + phone + "\n" +
-        "Subject: " + subject + "\n\n" +
-        "Message:\n" + message + "\n\n" +
-        "Thank you.";
+        // Create WhatsApp message
+        const whatsappMessage =
+            "Hello Zelivo Spices,\n\n" +
+            "New Contact Enquiry\n\n" +
+            "Name: " + name + "\n" +
+            "Email: " + email + "\n" +
+            "Phone: " + phone + "\n" +
+            "Subject: " + subject + "\n\n" +
+            "Message:\n" + message + "\n\n" +
+            "Thank you.";
 
-    // WhatsApp number
-    const whatsappURL =
-        "https://wa.me/919809780932?text=" +
-        encodeURIComponent(whatsappMessage);
+        // WhatsApp number
+        const whatsappURL =
+            "https://wa.me/919809780932?text=" +
+            encodeURIComponent(whatsappMessage);
 
-    // Open WhatsApp
-    window.open(whatsappURL, "_blank");
+        // Open WhatsApp
+        window.open(whatsappURL, "_blank");
 
-    // Submit the form to Django after opening WhatsApp
-    setTimeout(function() {
-        document.getElementById("whatsappContactForm").submit();
-    }, 500);
+        // Submit the form to Django after opening WhatsApp
+        setTimeout(function () {
+            document.getElementById("whatsappContactForm").submit();
+        }, 500);
 
-});
+    });
 
 </script>
 

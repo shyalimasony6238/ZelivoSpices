@@ -7,24 +7,33 @@ Zelivo Spices | Products
 
 {% block content %}
 
+
 <!-- ============================================================
      PRODUCTS HERO
 ============================================================ -->
 
-<section class="inner-hero">
+<section class="inner-hero products-hero">
+
     <div class="container">
-        <span class="section-label">
-            ZELIVO COLLECTION
-        </span>
 
-        <h1>
-            Our <span>Products</span>
-        </h1>
+        <div class="hero-content">
 
-        <p>
-            Premium ingredients for unforgettable flavours.
-        </p>
+            <span class="section-label">
+                ZELIVO COLLECTION
+            </span>
+
+            <h1>
+                Our <span>Products</span>
+            </h1>
+
+            <p>
+                Premium ingredients for unforgettable flavours.
+            </p>
+
+        </div>
+
     </div>
+
 </section>
 
 
@@ -36,6 +45,7 @@ Zelivo Spices | Products
 
     <div class="container">
 
+
         <!-- CATEGORY FILTER -->
 
         <div class="category-filter text-center mb-4 mb-md-5">
@@ -46,7 +56,9 @@ Zelivo Spices | Products
                 type="button"
                 class="filter-btn active"
                 data-filter="all">
+
                 All
+
             </button>
 
 
@@ -68,9 +80,12 @@ Zelivo Spices | Products
         </div>
 
 
-        <!-- PRODUCT GRID -->
+        <!-- ====================================================
+             PRODUCT GRID
+        ==================================================== -->
 
         <div class="row g-3 g-md-4" id="productGrid">
+
 
             {% for product in products %}
 
@@ -90,6 +105,7 @@ Zelivo Spices | Products
                             alt="{{ product.name }}"
                             loading="lazy">
 
+
                         {% if not product.is_available %}
 
                         <span class="product-badge unavailable">
@@ -105,17 +121,22 @@ Zelivo Spices | Products
 
                     <div class="product-content">
 
+
                         <!-- CATEGORY -->
 
                         <small class="product-category">
+
                             {{ product.category.name }}
+
                         </small>
 
 
                         <!-- PRODUCT NAME -->
 
                         <h3>
+
                             {{ product.name }}
+
                         </h3>
 
 
@@ -124,42 +145,65 @@ Zelivo Spices | Products
                         {% if product.weight %}
 
                         <p class="product-weight">
+
                             {{ product.weight }}
+
                             <span>
                                 (Customized Quantity Available)
                             </span>
+
                         </p>
 
                         {% endif %}
 
 
-                        <!-- PRICE + DETAILS -->
+                        <!-- PRICE -->
 
-                        <div class="product-footer">
+                        <div class="product-price">
 
-                            <div class="product-price">
+                            <strong>
+                                ₹{{ product.price }}
+                            </strong>
 
-                                <strong>
-                                    ₹{{ product.price }}
-                                </strong>
-
-                                <small>
-                                    Price may vary based on quantity and  Market Price.
-                                </small>
-
-                            </div>
-
-
-                            <a
-                                href="{% url 'product_detail' product.id %}"
-                                class="product-arrow"
-                                aria-label="View {{ product.name }}">
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
+                            <small>
+                                Price may vary based on quantity and Market Price.
+                            </small>
 
                         </div>
+
+
+                        <!-- ====================================================
+                             WHATSAPP ENQUIRY BUTTON
+                        ==================================================== -->
+
+                        {% if product.is_available %}
+
+                        <a
+                            href="https://wa.me/919809780932?text=Hello%20Zelivo%20Spices,%20I%20am%20interested%20in%20{{ product.name|urlencode }}.%20Please%20share%20more%20details."
+                            target="_blank"
+                            class="whatsapp-enquiry">
+
+                            <i class="bi bi-whatsapp"></i>
+
+                            Enquiry on WhatsApp
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+                        {% else %}
+
+                        <button
+                            type="button"
+                            class="whatsapp-enquiry disabled"
+                            disabled>
+
+                            Out of Stock
+
+                        </button>
+
+                        {% endif %}
+
 
                     </div>
 
@@ -175,7 +219,9 @@ Zelivo Spices | Products
             <div class="col-12 text-center">
 
                 <p class="no-products">
+
                     No products are currently available.
+
                 </p>
 
             </div>
@@ -187,6 +233,275 @@ Zelivo Spices | Products
     </div>
 
 </section>
+
+
+<!-- ============================================================
+     PRODUCTS PAGE CSS
+============================================================ -->
+
+<style>
+
+    /* ============================================================
+       PRODUCTS HERO
+    ============================================================ */
+
+    .products-hero {
+
+        position: relative;
+
+        min-height: 330px;
+
+        display: flex;
+
+        align-items: center;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(5, 15, 10, 0.96) 0%,
+                rgba(5, 15, 10, 0.82) 35%,
+                rgba(5, 15, 10, 0.35) 70%,
+                rgba(5, 15, 10, 0.20) 100%
+            ),
+            url("{% static 'images/spices-banner.jpg' %}");
+
+        background-size: cover;
+
+        background-position: center;
+
+        overflow: hidden;
+
+    }
+
+
+    .products-hero .container {
+
+        position: relative;
+
+        z-index: 2;
+
+    }
+
+
+    .hero-content {
+
+        max-width: 600px;
+
+        padding: 50px 0;
+
+    }
+
+
+    .products-hero .section-label {
+
+        color: #d8a94b;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .products-hero h1 {
+
+        color: #ffffff;
+
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: clamp(42px, 6vw, 72px);
+
+        font-weight: 600;
+
+        margin: 12px 0;
+
+    }
+
+
+    .products-hero h1 span {
+
+        color: #f1ca70;
+
+    }
+
+
+    .products-hero p {
+
+        color: #f7f1e7;
+
+        font-size: 18px;
+
+        margin: 0;
+
+    }
+
+
+    /* ============================================================
+       WHATSAPP ENQUIRY BUTTON
+    ============================================================ */
+
+    .whatsapp-enquiry {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        margin-top: 18px;
+
+        padding: 11px 14px;
+
+        border-radius: 30px;
+
+        background: #174f01;
+
+        color: #ffffff;
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        transition: all 0.3s ease;
+
+        border: none;
+
+    }
+
+
+    .whatsapp-enquiry:hover {
+
+        background: #0a6500;
+
+        color: #ffffff;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 8px 20px rgba(13, 64, 0, 0.25);
+
+    }
+
+
+    .whatsapp-enquiry i:first-child {
+
+        font-size: 18px;
+
+    }
+
+
+    .whatsapp-enquiry i:last-child {
+
+        font-size: 14px;
+
+    }
+
+
+    /* OUT OF STOCK BUTTON */
+
+    .whatsapp-enquiry.disabled {
+
+        background: #555;
+
+        cursor: not-allowed;
+
+        opacity: 0.7;
+
+    }
+
+
+    /* ============================================================
+       PRODUCT PRICE
+    ============================================================ */
+
+    .product-price {
+
+        margin-top: 12px;
+
+    }
+
+
+    .product-price strong {
+
+        display: block;
+
+        color: #f1ca70;
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+    }
+
+
+    .product-price small {
+
+        display: block;
+
+        color: #aeb8b2;
+
+        font-size: 11px;
+
+        line-height: 1.4;
+
+        margin-top: 4px;
+
+    }
+
+
+    /* ============================================================
+       MOBILE
+    ============================================================ */
+
+    @media (max-width: 768px) {
+
+        .products-hero {
+
+            min-height: 280px;
+
+            background-position: center;
+
+        }
+
+
+        .hero-content {
+
+            padding: 40px 0;
+
+        }
+
+
+        .products-hero h1 {
+
+            font-size: 46px;
+
+        }
+
+
+        .products-hero p {
+
+            font-size: 15px;
+
+        }
+
+
+        .whatsapp-enquiry {
+
+            font-size: 12px;
+
+            padding: 10px 8px;
+
+        }
+
+    }
+
+</style>
+
 
 {% endblock %}
 

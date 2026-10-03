@@ -1,0 +1,291 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | ZelivoSpices</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5efe5, #fffaf3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 12px;
+        }
+
+        .brand-name {
+            color: #4d6f25;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3d291b;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .message {
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.success {
+            background: #eaf7ea;
+            color: #28752d;
+            border: 1px solid #b9dfba;
+        }
+
+        .message.error {
+            background: #fff0f0;
+            color: #b3261e;
+            border: 1px solid #f0b8b5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #3d291b;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d8d0c5;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            background: #fff;
+        }
+
+        input:focus {
+            border-color: #6b8e35;
+            box-shadow: 0 0 0 3px rgba(107, 142, 53, 0.12);
+        }
+
+        .login-btn {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            margin-top: 5px;
+            background: #5b7f2b;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #456520;
+            transform: translateY(-1px);
+        }
+
+        .register-section {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .register-section p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .register-link {
+            color: #5b7f2b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .home-link:hover {
+            color: #5b7f2b;
+        }
+
+        @media (max-width: 500px) {
+            .login-card {
+                padding: 30px 22px;
+            }
+
+            .brand-name {
+                font-size: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="logo-section">
+            <img
+                src="{% static 'images/logo.jpg' %}"
+                alt="ZelivoSpices Logo"
+                class="logo"
+            >
+
+            <div class="brand-name">
+                ZelivoSpices
+            </div>
+
+            <div class="subtitle">
+                Authentic Spices • Natural Taste
+            </div>
+        </div>
+
+        <h1>Welcome Back</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message
+                    {% if message.tags == 'error' %}
+                        error
+                    {% else %}
+                        success
+                    {% endif %}
+                ">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'login' %}">
+
+            {% csrf_token %}
+
+            {% if request.GET.next %}
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ request.GET.next }}"
+                >
+            {% endif %}
+
+            <div class="form-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register-section">
+            <p>Don't have an account?</p>
+
+            <a href="{% url 'register' %}" class="register-link">
+                Create New Account
+            </a>
+        </div>
+
+        <a href="{% url 'home' %}" class="home-link">
+            ← Back to ZelivoSpices
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

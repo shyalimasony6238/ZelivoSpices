@@ -127,50 +127,49 @@ def story(request):
         }
     )
 
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import ContactMessage
+
 
 def contact(request):
 
     if request.method == "POST":
 
         name = request.POST.get("name")
-
         email = request.POST.get("email")
-
         phone = request.POST.get("phone")
-
         subject = request.POST.get("subject")
-
         message = request.POST.get("message")
 
+        try:
 
-        ContactMessage.objects.create(
+            ContactMessage.objects.create(
+                name=name,
+                email=email,
+                phone=phone,
+                subject=subject,
+                message=message
+            )
 
-            name=name,
+            messages.success(
+                request,
+                "Your message has been sent successfully!"
+            )
 
-            email=email,
+            return redirect("contact")
 
-            phone=phone,
+        except Exception:
 
-            subject=subject,
+            messages.error(
+                request,
+                "Sorry, your message could not be sent. Please try again."
+            )
 
-            message=message
+            return redirect("contact")
 
-        )
+    return render(request, "contact.html")
 
-
-        messages.success(
-            request,
-            "Thank you! Your message has been received."
-        )
-
-
-        return redirect("contact")
-
-
-    return render(
-        request,
-        "contact.html"
-    )
 def privacy(request):
     return render(
         request,

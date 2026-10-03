@@ -185,7 +185,7 @@ Zelivo Spices | Products
 
                             <i class="bi bi-whatsapp"></i>
 
-                            Enquiry on WhatsApp
+                            <span>Enquiry on WhatsApp</span>
 
                             <i class="bi bi-arrow-right"></i>
 
@@ -337,7 +337,7 @@ Zelivo Spices | Products
 
 
     /* ============================================================
-       WHATSAPP ENQUIRY BUTTON
+       WHATSAPP ENQUIRY BUTTON (RESPONSIVE)
     ============================================================ */
 
     .whatsapp-enquiry {
@@ -350,11 +350,11 @@ Zelivo Spices | Products
 
         justify-content: center;
 
-        gap: 8px;
+        gap: clamp(4px, 1.2vw, 8px);
 
         margin-top: 18px;
 
-        padding: 11px 14px;
+        padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 16px);
 
         border-radius: 30px;
 
@@ -364,13 +364,19 @@ Zelivo Spices | Products
 
         text-decoration: none;
 
-        font-size: 14px;
+        font-size: clamp(11px, 1.1vw, 14px);
 
         font-weight: 600;
+
+        line-height: 1.2;
+
+        white-space: nowrap;
 
         transition: all 0.3s ease;
 
         border: none;
+
+        box-sizing: border-box;
 
     }
 
@@ -390,14 +396,29 @@ Zelivo Spices | Products
 
     .whatsapp-enquiry i:first-child {
 
-        font-size: 18px;
+        font-size: clamp(14px, 1.3vw, 18px);
+
+        flex-shrink: 0;
 
     }
 
 
     .whatsapp-enquiry i:last-child {
 
-        font-size: 14px;
+        font-size: clamp(12px, 1vw, 14px);
+
+        flex-shrink: 0;
+
+    }
+
+
+    .whatsapp-enquiry span {
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+        white-space: nowrap;
 
     }
 
@@ -455,9 +476,44 @@ Zelivo Spices | Products
 
 
     /* ============================================================
-       MOBILE
+       MEDIA QUERIES FOR FINE-TUNING BUTTON RESPONSIVENESS
     ============================================================ */
 
+    /* Small Mobile (below 576px) — Fits inside 2-column mobile grids */
+    @media (max-width: 575.98px) {
+
+        .whatsapp-enquiry {
+
+            padding: 9px 8px;
+
+            font-size: 11px;
+
+            gap: 4px;
+
+        }
+
+        .whatsapp-enquiry i:last-child {
+
+            display: none; /* Hide trailing arrow on tiny screens to avoid overflow */
+
+        }
+
+    }
+
+    /* Tablet & Medium Screens (576px to 991px) */
+    @media (min-width: 576px) and (max-width: 991.98px) {
+
+        .whatsapp-enquiry {
+
+            padding: 10px 12px;
+
+            font-size: 12px;
+
+        }
+
+    }
+
+    /* Standard Mobile Hero Tuning */
     @media (max-width: 768px) {
 
         .products-hero {
@@ -489,19 +545,9 @@ Zelivo Spices | Products
 
         }
 
-
-        .whatsapp-enquiry {
-
-            font-size: 12px;
-
-            padding: 10px 8px;
-
-        }
-
     }
 
 </style>
 
 
 {% endblock %}
-

@@ -42,6 +42,30 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
+
+# ============================================================
+# MAINTENANCE MODE
+# ============================================================
+
+
+from django.contrib import admin
+from .models import SiteSettings
+
+
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+
+    list_display = ("maintenance_mode",)
+    list_display_links = None
+    list_editable = ("maintenance_mode",)
+
+    def has_add_permission(self, request):
+        return not SiteSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 admin.site.register(HomeBanner)
 admin.site.register(About)
 admin.site.register(WhyZelivo)

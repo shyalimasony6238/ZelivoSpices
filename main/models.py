@@ -236,3 +236,27 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return self.email
+
+
+# ============================================================
+# MAINTENANCE MODE
+# ============================================================
+
+
+
+class SiteSettings(models.Model):
+    maintenance_mode = models.BooleanField(
+        default=False,
+        verbose_name="Enable Maintenance Mode"
+    )
+
+    class Meta:
+        verbose_name = "Site Settings"
+        verbose_name_plural = "Site Settings"
+
+    def __str__(self):
+        return (
+            "Maintenance Mode ON"
+            if self.maintenance_mode
+            else "Maintenance Mode OFF"
+        )

@@ -66,10 +66,21 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         return False
 
 
+from django.contrib import admin
+from .models import Newsletter
+
+@admin.register(Newsletter)
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_at')
+    search_fields = ('email',)
+    list_filter = ('subscribed_at',)
+
+
 admin.site.register(HomeBanner)
 admin.site.register(About)
 admin.site.register(WhyZelivo)
 admin.site.register(SpiceStory)
 admin.site.register(Testimonial)
 admin.site.register(ContactMessage)
-admin.site.register(Newsletter)
+
+

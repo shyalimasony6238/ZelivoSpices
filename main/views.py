@@ -170,6 +170,32 @@ def contact(request):
 
     return render(request, "contact.html")
 
+
+
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.views.decorators.http import require_POST
+from .models import Newsletter
+
+@require_POST
+def newsletter_subscribe(request):
+    email = request.POST.get('email', '').strip().lower()
+
+    if email:
+        try:
+            Newsletter.objects.get_or_create(email=email)
+            messages.success(
+                request,
+                "Thank you for subscribing to Zelivo Spices!"
+            )
+        except Exception:
+            messages.error(
+                request,
+                "Something went wrong. Please try again."
+            )
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
 def privacy(request):
     return render(
         request,

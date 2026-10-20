@@ -218,14 +218,13 @@
                         Subscribe for updates, new products
                         and special offers.
                     </p>
-
-                    <form method="POST" action="#" class="newsletter-form">
+                    <form method="POST" action="{% url 'newsletter_subscribe'%}" class="newsletter-form">
 
                         {% csrf_token %}
 
                         <div class="input-group">
 
-                            <input type="email" class="form-control" placeholder="Your email address" required>
+                            <input type="email" class="form-control"  name="email" placeholder="Your email address" required>
 
                             <button class="btn btn-spice">
                                 <i class="bi bi-arrow-right"></i>

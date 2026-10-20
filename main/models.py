@@ -238,10 +238,8 @@ class Newsletter(models.Model):
         return self.email
 
 
-# ============================================================
-# MAINTENANCE MODE
-# ============================================================
 
+from django.db import models
 
 
 class SiteSettings(models.Model):

@@ -46,8 +46,8 @@ urlpatterns = [
         name="contact"
     ),
     path(
-        "privacy/",
-        views.privacy,
-        name="privacy"
-    )
+        "privacy/", views.privacy,name="privacy"
+    ),
+
+    path( 'newsletter/subscribe/',views.newsletter_subscribe, name='newsletter_subscribe'),
 ]

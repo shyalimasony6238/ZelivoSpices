@@ -28,11 +28,7 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
-    "zelivospices.com",
-    "www.zelivospices.com",
-    "zelivospices.onrender.com",
-    "localhost",
-    "127.0.0.1",
+    "localhost,127.0.0.1,zelivospices.onrender.com,zelivospices.com,www.zelivospices.com"
 ).split(",")
 
 
